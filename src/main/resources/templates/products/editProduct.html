@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Gallego's shop</title>
+
+  <!-- Bootstrap core CSS -->
+  <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link th:href="@{css/heroic-features.css}" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <div th:include="admin/template_admin::header">
+  </div>
+
+    <!-- Page Content -->
+    <div class="container">
+
+
+
+      <!-- Page Heading/Breadcrumbs -->
+      <h1 class="mt-4 mb-3">
+        Gallego's Shop <small>Productos</small>
+      </h1>
+
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+        <li class="breadcrumb-item active">Actualizar Producto</li>
+      </ol>
+
+      <h2>Editar Producto</h2>
+      <form class="form-horizontal" th:action="@{/admin/products/saveEditedProduct}" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="productId" th:value="${productToEdit.productId()}">
+
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="productName">Nombre:</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="productName" name="productName"
+                   placeholder="Ingrese el nombre del producto" autocomplete="off" required
+                   th:value="${productToEdit.productName()}">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="category">Categoria:</label>
+          <div class="col-sm-10">
+        <textarea class="form-control" id="category" name="category"
+                  placeholder="Ingrese la categoria del producto" required
+                  autocomplete="off" th:text="${productToEdit.category()}"> </textarea>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="description">Descripcion:</label>
+          <div class="col-sm-10">
+        <textarea class="form-control" id="description" name="description"
+                  placeholder="Ingrese la descripcion del producto" required
+                  autocomplete="off" th:text="${productToEdit.description()}"> </textarea>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="price">Precio:</label>
+          <div class="col-sm-10">
+            <input type="number" class="form-control" step="any" id="price" name="price"
+                   placeholder="Ingrese el precio del producto" autocomplete="off" required th:value="${productToEdit.price()}">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="stock">Cantidad:</label>
+          <div class="col-sm-10">
+            <input type="number" class="form-control" step="any" id="stock" name="stock"
+                   placeholder="Ingrese las unidades del producto" autocomplete="off" required th:value="${productToEdit.stock()}">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="img">Imagen:</label>
+          <div class="col-sm-10">
+            <input type="file" class="form-control-file" id="img" name="img">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-2">
+            <button type="submit" class="btn btn-success">
+              <span class="glyphicon glyphicon-saved" ></span> Actualizar
+            </button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+    <!-- /.container -->
+
+  <!-- Footer -->
+  <div th:include="admin/template_admin::footer"></div>
+
+  <!-- Bootstrap core JavaScript -->
+  <!-- Bootstrap core JavaScript -->
+  <script th:src="@{vendor/jquery/jquery.min.js}"></script>
+  <script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+  </body>
+
+  </html>

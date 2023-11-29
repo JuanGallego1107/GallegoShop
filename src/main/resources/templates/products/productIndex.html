@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Spring eCommerce</title>
+
+
+  <!-- Bootstrap core CSS -->
+  <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link th:href="@{css/heroic-features.css}" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <div th:include="admin/template_admin::header">
+  </div>
+
+<!-- Page Content -->
+<div class="container">
+
+
+  <!-- Page Heading/Breadcrumbs -->
+  <h1 class="mt-4 mb-3">
+    Spring eCommerce <small>Productos</small>
+  </h1>
+
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a th:href="@{/admin}">Inicio</a></li>
+    <li class="breadcrumb-item active">Ver Productos</li>
+  </ol>
+
+  <a class="btn btn-primary" th:href="@{/admin/products/createProduct}" >Añadir Producto</a>
+  <h2>Productos</h2>
+  <div class="container mt-4">
+    <table class="table">
+      <thead>
+      <tr>
+        <td>Nombre</td>
+        <td>Categoria</td>
+        <td>Descripcion</td>
+        <td>Precio</td>
+        <td>Stock</td>
+        <td>Acciones</td>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="product: ${productList}">
+        <td th:text="${product.productName()}"></td>
+        <td th:text="${product.category()}"></td>
+        <td th:text="${product.description()}"></td>
+        <td th:text="${product.price()}"></td>
+        <td th:text="${product.stock()}"></td>
+        <td>
+          <a class="btn btn-warning" th:href="@{products/editProduct/{productId} (productId =${product.productId()}) }">Editar</a>
+          <a class="btn btn-danger" th:href="@{products/deleteProduct/{productId} (productId=${product.productId()})} ">Eliminar</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<!-- Footer -->
+  <div th:include="admin/template_admin::footer"></div>
+
+<!-- Bootstrap core JavaScript -->
+  <!-- Bootstrap core JavaScript -->
+  <script th:src="@{vendor/jquery/jquery.min.js}"></script>
+  <script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+</body>
+
+</html>
